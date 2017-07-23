@@ -69,7 +69,7 @@
 #include "Robot.h"
 
 #include <iostream> // std::cout, std::endl
-#include <thread> // std::thread
+#include <thread>   // std::thread
 
 // For all processing functions that OpenCV gives
 #include "opencv2/imgproc.hpp" // cv::rectangle
@@ -79,21 +79,34 @@
 #include "cscore_oo.h" // cs::CvSink, cs::CvSource
 #include "WPILib.h" // START_ROBOT_CLASS
 
+//! The date and time this code was compiled
 #define DATETIME __DATE__ " - " __TIME__
 
+//! The IP address of the Axis Camera
 #define CAM_IP "10.5.80.200"
 
+//! Write the current date and time this code was compiled to the console while
+//!  compiling
 #pragma message "Latest Build: " DATETIME
 
+/**
+ * @brief Constructs a new Robot.
+ */
 Robot::Robot(): m_server(CameraServer::GetInstance())
 {
     // Simple print to check if the latest code was deployed properly
 	std::cout << "Build from " << DATETIME << std::endl;
 }
 
+/**
+ * @brief Destroys the Robot.
+ */
 Robot::~Robot() {
 }
 
+/**
+ * @brief Initializes the robot.
+ */
 void Robot::RobotInit() {
     // Create a new thread to execute a lambda
     m_vision_thread = std::thread([this]() {
@@ -149,27 +162,47 @@ void Robot::RobotInit() {
     m_vision_thread.detach();
 }
 
+/**
+ * @brief Initializes Teleop mode.
+ */
 void Robot::TeleopInit() {
     
 }
 
+/**
+ * @brief Initializes Autonomous mode.
+ */
 void Robot::AutonomousInit() {
 
 }
 
+/**
+ * @brief Initializes Disabled mode.
+ */
 void Robot::DisabledInit() {
 
 }
 
+/**
+ * @brief Code to perform during teleop mode.
+ */
 void Robot::TeleopPeriodic() {
+
 }
 
+/**
+ * @brief Code to perform during autonomous mode.
+ */
 void Robot::AutonomousPeriodic() {
 
 }
 
+/**
+ * @brief Code to perform during disabled mode.
+ */
 void Robot::DisabledPeriodic() {
 
 }
 
+// Begin the robot.
 START_ROBOT_CLASS(Robot);
